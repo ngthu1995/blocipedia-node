@@ -1,0 +1,19 @@
+{
+  "name": "blocipedia-node",
+  "version": "1.0.0",
+  "description": "An application allows users to create, collaborate and share wikis",
+  "main": "app.js",
+  "scripts": {
+    "test": "set NODE_ENV=test&& jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ngthu1995/blocipedia-node.git"
+  },
+  "author": "Thu Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngthu1995/blocipedia-node/issues"
+  },
+  "homepage": "https://github.com/ngthu1995/blocipedia-node#readme"
+}
