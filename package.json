@@ -4,7 +4,7 @@
   "description": "An application allows users to create, collaborate and share wikis",
   "main": "app.js",
   "scripts": {
-    "test": "set NODE_ENV=test&& jasmine",
+    "test": "set NODE_ENV=test && jasmine",
     "start": "node src/server.js"
   },
   "author": "Thu Nguyen",
@@ -13,6 +13,7 @@
     "url": "https://github.com/ngthu1995/blocipedia-node/issues"
   },
   "dependencies": {
+    "dotenv": "^5.0.0",
     "express": "^4.16.2"
   },
   "devDependencies": {
