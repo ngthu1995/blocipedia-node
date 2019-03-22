@@ -36,7 +36,7 @@ describe("User", () => {
     // #3
     it("should not create a user with invalid email or password", done => {
       User.create({
-        email: "It's-a me, Mario!",
+        email: "Mario!",
         password: "1234567890"
       })
         .then(user => {
