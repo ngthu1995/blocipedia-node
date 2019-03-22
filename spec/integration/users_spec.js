@@ -26,4 +26,61 @@ describe("routes : users", () => {
       });
     });
   });
+
+  describe("POST /users", () => {
+    it("should create a new user with valid values and redirect", done => {
+      const options = {
+        url: base,
+        form: {
+          email: "user@example.com",
+          password: "12345"
+        }
+      };
+
+      request.post(options, (err, res, body) => {
+        User.findOne({ where: { email: "user@example.com" } })
+          .then(user => {
+            expect(user.email).toBe("user@example.com");
+            expect(user.id).toBe(1);
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+            done();
+          });
+      });
+    });
+
+    it("should not create a new user with invalid email and password", done => {
+      const options = {
+        url: base,
+        form: {
+          email: "nah",
+          password: "12345"
+        }
+      };
+
+      request.post(options, (err, res, body) => {
+        User.findOne({ where: { email: "nah" } })
+          .then(done => {
+            expect(user).toBeNull();
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+            done();
+          });
+      });
+    });
+  });
+
+  describe("GET /users/sign_in", () => {
+    it("should render a view with a sign in form", done => {
+      request.get(`${base}sign_in`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("Sign in");
+        done();
+      });
+    });
+  });
 });
