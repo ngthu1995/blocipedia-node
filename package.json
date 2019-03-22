@@ -4,7 +4,7 @@
   "description": "An application allows users to create, collaborate and share wikis",
   "main": "app.js",
   "scripts": {
-    "test": "set NODE_ENV=test && jasmine",
+    "test": "set NODE_ENV=test&& jasmine",
     "start": "node src/server.js"
   },
   "author": "Thu Nguyen",
