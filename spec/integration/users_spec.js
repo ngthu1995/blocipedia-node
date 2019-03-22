@@ -33,13 +33,14 @@ describe("routes : users", () => {
         url: base,
         form: {
           email: "user@example.com",
-          password: "12345"
+          password: "123456789"
         }
       };
 
       request.post(options, (err, res, body) => {
         User.findOne({ where: { email: "user@example.com" } })
           .then(user => {
+            expect(user).not.toBeNull();
             expect(user.email).toBe("user@example.com");
             expect(user.id).toBe(1);
             done();
@@ -51,26 +52,27 @@ describe("routes : users", () => {
       });
     });
 
-    it("should not create a new user with invalid email and password", done => {
-      const options = {
-        url: base,
-        form: {
-          email: "nah",
-          password: "12345"
+    it("should not create a new user with invalid attributes and redirect", done => {
+      request.post(
+        {
+          url: base,
+          form: {
+            email: "no",
+            password: "123456789"
+          }
+        },
+        (err, res, body) => {
+          User.findOne({ where: { email: "no" } })
+            .then(user => {
+              expect(user).toBeNull();
+              done();
+            })
+            .catch(err => {
+              console.log(err);
+              done();
+            });
         }
-      };
-
-      request.post(options, (err, res, body) => {
-        User.findOne({ where: { email: "nah" } })
-          .then(done => {
-            expect(user).toBeNull();
-            done();
-          })
-          .catch(err => {
-            console.log(err);
-            done();
-          });
-      });
+      );
     });
   });
 
