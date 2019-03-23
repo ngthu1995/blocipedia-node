@@ -17,7 +17,15 @@ module.exports = {
 
     User.findOne({ where: { email: newUser.email } }).then(user => {
       if (user) {
-        req.flash("error", "E-mail already in use");
+        const errors = [
+          {
+            location: "body",
+            param: "email",
+            msg: "is already in use",
+            value: ""
+          }
+        ];
+        req.flash("error", errors);
         res.redirect("back");
       } else {
         userQueries.createUser(newUser, (err, user) => {
