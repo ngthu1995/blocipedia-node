@@ -59,18 +59,23 @@ describe("routes : wikis", () => {
   describe("POST /wikis/create", () => {
     it("should create a new wiki and redirect", done => {
       const options = {
-        url: `${base}create`,
+        url: `${base}/create`,
         form: {
-          title: "blink-182 songs",
-          body: "What's your favorite blink-182 song?",
-          private: true
+          title: "Watching snow melt",
+          body:
+            "Without a doubt my favoriting things to do besides watching paint dry!",
+          userId: 1
         }
       };
       request.post(options, (err, res, body) => {
-        Wiki.findOne({ where: { title: "blink-182 songs" } })
+        Wiki.findOne({ where: { title: "Watching snow melt" } })
           .then(wiki => {
-            expect(wiki.title).toBe("blink-182 songs");
-            expect(wiki.body).toBe("What's your favorite blink-182 song?");
+            // expect(wiki).not.toBeNull();
+            expect(wiki.title).toBe("Watching snow melt");
+            expect(wiki.body).toBe(
+              "Without a doubt my favoriting things to do besides watching paint dry!"
+            );
+            expect(post.topicId).not.toBeNull();
             done();
           })
           .catch(err => {

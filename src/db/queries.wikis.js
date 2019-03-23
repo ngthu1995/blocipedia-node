@@ -11,7 +11,11 @@ module.exports = {
       });
   },
   addWiki(newWiki, callback) {
-    return Wiki.create(newWiki)
+    return Wiki.create({
+      title: newWiki.title,
+      body: newWiki.body,
+      private: newWiki.private
+    })
       .then(wiki => {
         callback(null, wiki);
       })
