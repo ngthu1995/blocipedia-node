@@ -17,7 +17,8 @@ module.exports = {
 
     User.findOne({ where: { email: newUser.email } }).then(user => {
       if (user) {
-        res.redirect("/users/sign_up");
+        req.flash("error", "E-mail already in use");
+        res.redirect("back");
       } else {
         userQueries.createUser(newUser, (err, user) => {
           if (err) {
