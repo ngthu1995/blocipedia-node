@@ -9,5 +9,14 @@ module.exports = {
       .catch(err => {
         callback(err);
       });
+  },
+  addWiki(newWiki, callback) {
+    return Wiki.create(newWiki)
+      .then(wiki => {
+        callback(null, wiki);
+      })
+      .catch(err => {
+        callback(err);
+      });
   }
 };

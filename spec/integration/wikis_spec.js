@@ -45,4 +45,39 @@ describe("routes : wikis", () => {
       });
     });
   });
+
+  describe("GET /wikis/new", () => {
+    it("should render a new wiki form", done => {
+      request.get(`${base}new`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("New Wiki");
+        done();
+      });
+    });
+  });
+
+  describe("POST /wikis/create", () => {
+    it("should create a new wiki and redirect", done => {
+      const options = {
+        url: `${base}create`,
+        form: {
+          title: "blink-182 songs",
+          body: "What's your favorite blink-182 song?",
+          private: true
+        }
+      };
+      request.post(options, (err, res, body) => {
+        Wiki.findOne({ where: { title: "blink-182 songs" } })
+          .then(wiki => {
+            expect(wiki.title).toBe("blink-182 songs");
+            expect(wiki.body).toBe("What's your favorite blink-182 song?");
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+            done();
+          });
+      });
+    });
+  });
 });
