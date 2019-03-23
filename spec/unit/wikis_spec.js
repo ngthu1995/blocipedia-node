@@ -70,7 +70,6 @@ describe("Wiki", () => {
   describe("#setUser()", () => {
     it("should associate a user and a wiki together", done => {
       User.create({
-        username: "Khan",
         email: "example@email.com",
         password: "12345"
       }).then(newUser => {
@@ -87,7 +86,7 @@ describe("Wiki", () => {
   describe("#getUser()", () => {
     it("should return the associated user", done => {
       this.wiki.getUser().then(associatedUser => {
-        expect(associatedUser.username).toBe("khang");
+        expect(associatedUser.email).toBe("example@email.com");
         done();
       });
     });

@@ -12,7 +12,6 @@ describe("routes : wikis", () => {
     this.user;
     sequelize.sync({ force: true }).then(res => {
       User.create({
-        username: "khang",
         email: "example@email.com",
         password: "12345"
       }).then(user => {
@@ -61,7 +60,6 @@ describe("routes : wikis", () => {
   describe("POST /wikis/create", () => {
     beforeEach(done => {
       User.create({
-        username: "khang",
         email: "example@email.com",
         password: "12345"
       }).then(user => {
@@ -69,7 +67,6 @@ describe("routes : wikis", () => {
           {
             url: "http://localhost:3000/auth/fake",
             form: {
-              username: user.username,
               userId: user.id,
               email: user.email
             }
@@ -84,7 +81,7 @@ describe("routes : wikis", () => {
     const options = {
       url: `${base}create`,
       form: {
-        title: "LOL",
+        title: "hi there",
         body: "number 1 esport game",
         private: false
       }
@@ -92,11 +89,11 @@ describe("routes : wikis", () => {
 
     it("should create a new wiki and redirect", done => {
       request.post(options, (err, res, body) => {
-        Wiki.findOne({ where: { title: "LOL" } })
+        Wiki.findOne({ where: { title: "hi there" } })
           .then(wiki => {
             expect(wiki).not.toBeNull();
-            expect(wiki.title).toBe("LOL");
-            expect(wiki.body).toBe("number 1 esport game");
+            expect(wiki.title).toBe("hi there");
+            expect(wiki.body).toBe("nice to meet you");
             done();
           })
           .catch(err => {
