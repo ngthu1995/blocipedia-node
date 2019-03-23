@@ -3,6 +3,6 @@ const router = express.Router();
 
 const wikiController = require("../controllers/wikiController");
 
-router.get("/wikis", wikiController.test);
+router.get("/wikis/", wikiController.index);
 
 module.exports = router;

@@ -4,7 +4,7 @@ module.exports = {
   getAllWikis(callback) {
     return Wiki.all()
       .then(wikis => {
-        callback(null, callback);
+        callback(null, wikis);
       })
       .catch(err => {
         callback(err);
