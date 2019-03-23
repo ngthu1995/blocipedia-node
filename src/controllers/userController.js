@@ -1,5 +1,6 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
+const User = require("../db/models").User;
 
 module.exports = {
   signUp(req, res, next) {
@@ -13,15 +14,22 @@ module.exports = {
       passwordConfirmation: req.body.passwordConfirmation
     };
     // #2
-    userQueries.createUser(newUser, (err, user) => {
-      if (err) {
-        req.flash("error", err);
+
+    User.findOne({ where: { email: newUser.email } }).then(user => {
+      if (user) {
         res.redirect("/users/sign_up");
       } else {
-        // #3
-        passport.authenticate("local")(req, res, () => {
-          req.flash("notice", "You've successfully signed in!");
-          res.redirect("/");
+        userQueries.createUser(newUser, (err, user) => {
+          if (err) {
+            req.flash("error", err);
+            res.redirect("/users/sign_up");
+          } else {
+            // #3
+            passport.authenticate("local")(req, res, () => {
+              req.flash("notice", "You've successfully signed in!");
+              res.redirect("/");
+            });
+          }
         });
       }
     });
