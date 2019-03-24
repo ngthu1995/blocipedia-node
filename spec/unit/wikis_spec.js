@@ -8,7 +8,6 @@ describe("Wiki", () => {
     this.user;
     sequelize.sync({ force: true }).then(res => {
       User.create({
-        username: "khang",
         email: "example@email.com",
         password: "12345"
       }).then(user => {
