@@ -77,6 +77,15 @@ module.exports = {
     });
   },
   upgradeForm(req, res, next) {
-    res.render("users/upgrade", { keyPublishable });
+    res.render("users/membership", { keyPublishable });
+  },
+  upgrade(req, res, next) {
+    userQueries.upgrade(req.params.id);
+    res.render("users/payment_confirmation");
+  },
+  downgrade(req, res, next) {
+    userQueries.downgrade(req.params.id);
+    req.flash("notice", "You are not a premium user anymore");
+    res.redirect("/");
   }
 };

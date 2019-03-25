@@ -26,21 +26,21 @@
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <% if(currentUser) { %>
-
+        <% if(currentUser && currentUser.role == "standard") { %>
         <li class="nav-item">
           <a class="nav-link" href="/users/sign_out">Sign out</a>
         </li>
-        <!-- <% if(currentUser && currentUser.role == "standard) { %>
         <li class="nav-item">
           <a class="nav-link" href="/users/upgrade">Upgrade</a>
         </li>
-        <% }%> <% else { %>
+        <% } else if (currentUser && currentUser.role == "premium") { %>
         <li class="nav-item">
-          <a class="nav-link" href="/users/downgrade">Upgrade</a>
+          <a class="nav-link" href="/users/sign_out">Sign out</a>
         </li>
-
-        <% }%> <% } else { %> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/users/downgrade">Downgrade</a>
+        </li>
+        <% } else { %>
         <!-- #2 -->
         <li class="nav-item">
           <a class="nav-link" href="/users/sign_up">Sign up</a>
