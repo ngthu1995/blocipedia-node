@@ -1,25 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <% include ../static/partials/head.ejs %>
+    <% include ./partials/head.ejs %>
   </head>
   <body>
+    <!-- Navigation -->
+    <% include ./partials/navbar.ejs %>
+
+    <!-- Page Content -->
     <main class="container">
-      <% include ../static/partials/navbar.ejs %> <% include
-      ../static/partials/messages.ejs %>
+      <!-- Jumbotron Header -->
+      <header class="jumbotron my-4">
+        <h1 class="display-3">Wikiperk opens unlimited sky of knowledge</h1>
+        <p class="lead">An application for users to share information.</p>
+        <a href="/users/sign_up" class="btn btn-primary btn-lg">Sign up</a>
+      </header>
 
-      <h1>Wikis</h1>
-      <% if(currentUser) { %>
+      <!-- Page Features -->
+      <section class="row text-center">
+        <section class="col-lg-4">
+          <h4 class="card-title">Post</h4>
+          <p class="card-text">
+            Share your thoughts about subjects that are important to you.
+          </p>
+        </section>
 
-      <a href="/wikis/new" class="btn btn-success">New Wiki</a>
-      <% } %>
-      <ul class="list-group">
-        <% wikis.forEach((wiki) => { %>
-        <li class="list-group-item">
-          <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-        </li>
-        <% }) %>
-      </ul>
+        <section class="col-lg-4">
+          <h4 class="card-title">Comment</h4>
+          <p class="card-text">
+            Your opinion counts! But you have to make yourself heard first!
+          </p>
+        </section>
+
+        <section class="col-lg-4">
+          <h4 class="card-title">Stay Informed</h4>
+          <p class="card-text">
+            See the most active topics as well as trending subjects every day!
+          </p>
+        </section>
+      </section>
+      <!-- /.row -->
     </main>
+    <!-- /.container -->
+
+    <% include ./partials/baseScripts.ejs %>
   </body>
 </html>

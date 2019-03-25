@@ -1,6 +1,7 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const User = require("../db/models").User;
+const keyPublishable = process.env.PUBLISHABLE_KEY;
 
 module.exports = {
   signUp(req, res, next) {
@@ -74,5 +75,8 @@ module.exports = {
         res.render("users/show", { ...result });
       }
     });
+  },
+  upgradeForm(req, res, next) {
+    res.render("users/upgrade", { keyPublishable });
   }
 };
