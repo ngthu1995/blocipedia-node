@@ -3,8 +3,9 @@ const Authorizer = require("../policies/wikis.js");
 
 module.exports = {
   getAllWikis(callback) {
-    return Wiki.all()
-
+    return Wiki.all({
+      where: { private: false }
+    })
       .then(wikis => {
         callback(null, wikis);
       })
@@ -13,6 +14,34 @@ module.exports = {
       });
   },
 
+  getPrivateWikis(req, callback) {
+    return Wiki.all({
+      where: { private: true, userId: req.user.id }
+    })
+      .then(wikis => {
+        callback(null, wikis);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
+
+  downgradePrivateWikis(req, callback) {
+    return Wiki.all({
+      where: { userId: req.user.id, private: true }
+    }).then(wikis => {
+      if (!wikis) {
+        return "Private wikis do not exist";
+      } else {
+        return wikis.forEach(wiki => {
+          wiki.updateAttributes({ private: false });
+        });
+      }
+    });
+    // .catch(err => {
+    //   callback(err);
+    // });
+  },
   addWiki(newWiki, callback) {
     return Wiki.create(newWiki)
       .then(wiki => {

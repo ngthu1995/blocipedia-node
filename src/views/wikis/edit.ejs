@@ -41,6 +41,15 @@
             >body must be 12 or more characters in length.</small
           >
         </div>
+        <div class="form-group">
+          <select class="form-control" name="private">
+            <% if (currentUser.role !== "standard" && currentUser.id ===
+            wiki.userId || currentUser.isAdmin() ) { %>
+            <option value="true">Private</option>
+            <% } %>
+            <option value="false">Public</option>
+          </select>
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
     </main>

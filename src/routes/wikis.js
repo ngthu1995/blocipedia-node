@@ -4,7 +4,9 @@ const helper = require("../auth/helpers");
 
 const wikiController = require("../controllers/wikiController");
 
-router.get("/wikis/", wikiController.index);
+router.get("/wikis/", wikiController.publicWiki);
+
+router.get("/wikis/private", wikiController.privateWiki);
 
 router.get("/wikis/new", wikiController.new);
 

@@ -2,7 +2,7 @@ const wikiQueries = require("../db/queries.wikis.js");
 const Authorizer = require("../policies/wikis");
 
 module.exports = {
-  index(req, res, next) {
+  publicWiki(req, res, next) {
     wikiQueries.getAllWikis((err, wikis) => {
       if (err) {
         console.log(err);
@@ -13,6 +13,16 @@ module.exports = {
     });
   },
 
+  privateWiki(req, res, next) {
+    wikiQueries.getPrivateWikis(req, (err, wikis) => {
+      if (err) {
+        console.log(err);
+        res.redirect(500, "static/index");
+      } else {
+        res.render("wikis/private", { wikis });
+      }
+    });
+  },
   new(req, res, next) {
     const authorized = new Authorizer(req.user).new();
     if (authorized) {
