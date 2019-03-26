@@ -9,18 +9,20 @@
     <main class="container">
       <% include ../static/partials/messages.ejs %>
 
-      <h1><%= wiki.title %></h1>
+      <h1><%- markdownWiki.title %></h1>
       <% if(currentUser) { %>
-      <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
+      <a href="/wikis/<%- markdownWiki.id %>/edit" class="btn btn-warning"
+        >Edit</a
+      >
       <form
         style="display:initial"
-        action="/wikis/<%= wiki.id %>/destroy"
+        action="/wikis/<%- markdownWiki.id %>/destroy"
         method="POST"
       >
         <button type="submit" class="btn btn-danger">Delete</button>
       </form>
       <% } %>
-      <p><%= wiki.body %></p>
+      <p><%- markdownWiki.body %></p>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
