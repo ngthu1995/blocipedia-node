@@ -21,7 +21,7 @@ describe("routes : users", () => {
     it("should render a view with a sign up form", done => {
       request.get(`${base}sign_up`, (err, res, body) => {
         expect(err).toBeNull();
-        expect(body).toContain("Welcome to Blocipedia");
+        expect(body).toContain("Welcome to Wikiperk");
         done();
       });
     });

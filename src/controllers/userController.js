@@ -2,6 +2,7 @@ const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const User = require("../db/models").User;
 const wikiQueries = require("../db/queries.wikis");
+const Collaborator = require("../db//models").Collaborator;
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 
 module.exports = {
@@ -92,5 +93,19 @@ module.exports = {
     wikiQueries.downgradePrivateWikis(req);
     req.flash("notice", "You are not a premium user anymore");
     res.redirect("/");
+  },
+  showCollaborations(req, res, next) {
+    userQueries.getUser(req.params.id, (err, result) => {
+      user = result["user"];
+      collaborations = result["collaborations"];
+      console.log(collaborations);
+      if (err || user == null) {
+        res.redirect(404, "/");
+      } else {
+        res.render("users/collaborations", {
+          ...collaborations
+        });
+      }
+    });
   }
 };
