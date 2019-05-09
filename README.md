@@ -1,17 +1,11 @@
 # Blocipedia
 
-Home (current)
-Wiki (current)
-Sign up
-
-An audio player application is built with [Create React App](https://github.com/facebook/create-react-app).
-
-An application allows users to visit the site, and listen to existing music list.
+An application allows users to create, collaborate, and share (CRUD) wikis using Node.js along with Sequelize, Postgres and some middlesware to enhance application performance, such as passport, b-crypt, stripe, etc.
 
 ### Completed:
 
-Users are able to navigate to home page, album page.
-Users are able to listen to different track in the existing list.
+Users are able to navigate to home page, sign up, sign in and create, delete, update wikis.
+Users have options to update their membership, which allows
 Users are able to start, change and pause a song if possible.
 
 ### Screenshot:
@@ -34,7 +28,7 @@ Understanding of React.js
 ### Installing
 
 1. Clone the repo to your local machine \
-   `$ git clone https://github.com/ngthu1995/bloc-jams-react`
+   `$ git clone https://github.com/ngthu1995/blocipedia-node`
 
 2. Install dependencies \
    `$ npm install`
@@ -44,17 +38,21 @@ Understanding of React.js
 
 4. App now running on
 
-## Deployment
-
-The site is deployed with Heroku.
-
 ## Built With
 
-React.js
+Node.js, Sequelize, Stripe, Bcrypt, Jasmine, Postgres
 
 ## Versioning
 
-React: 16.7.0
+- @sendgrid/mail: 6.3.1
+  -bcryptjs: 2.4.3
+- body-parser: 1.18.2
+- express: 4.16.2
+- passport: 0.4.0
+- pg: 7.4.1
+- pg-hstore: 2.3.2
+- sequelize:4.32.6
+- stripe: 6.28.0
 
 ## Author
 
