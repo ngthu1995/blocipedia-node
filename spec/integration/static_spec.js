@@ -7,7 +7,7 @@ describe("routes : static", () => {
     it("should return status code 200 and have a title in the body", done => {
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
-        expect(body).toContain("Wikiperk opens unlimited sky of knowledge");
+        expect(body).toContain("Unlimited sky of knowledge");
         done();
       });
     });
