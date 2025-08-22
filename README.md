@@ -8,8 +8,6 @@ Users are able to navigate to home page, sign up, sign in and create, delete, up
 Users have options to update their membership, which allows
 Users are able to start, change and pause a song if possible.
 
-Deployed link: https://ngthu1995-blocipedia-node.herokuapp.com/
-
 ### Screenshot:
 
 ![Main site](src/assets/bloccit.png "Screenshot of the application")
